@@ -45,14 +45,16 @@ The 100th term of the Fibonacci sequence is 354224848179261915075.
 It took 1031 nanoseconds to calculate it.
 ```
 
-```$ fibonacci_guru -r 10
+```
+$ fibonacci_guru -r 10
 
 Recursive:
 The 10th term of the Fibonacci sequence is 55.
 It took 19430 nanoseconds to calculate it.
 ```
 
-```$ fibonacci_guru -b 30
+```
+$ fibonacci_guru -b 30
 
 Recursive:
 The 30th term of the Fibonacci sequence is 832040.
@@ -62,9 +64,11 @@ Dynamic:
 The 30th term of the Fibonacci sequence is 832040.
 It took 721 nanoseconds to calculate it.
 
-The Dynamic Programming implementation was 22 miliseconds faster than the Recursive implementation.```
+The Dynamic Programming implementation was 22 miliseconds faster than the Recursive implementation.
+```
 
-```fibonacci_guru -r 35 -l 34359738368
+```
+$ fibonacci_guru -r 35 -l 34359738368
 
 Recursive:
 The 35th term of the Fibonacci sequence is 9227465.
