@@ -3,12 +3,13 @@ use clap::{self, clap_app};
 mod calculate;
 mod utils;
 
-use utils::{result::ImplementationResult, FibonacciError, FibonacciResult, UserCommand};
+use utils::{FibonacciError, FibonacciResult, ImplementationResult, UserCommand};
 
 //this limit allows them to calculate up to n = 10
 const DEFAULT_RECURSION_LIMIT: u64 = 1024;
 
-fn main() {
+#[tokio::main]
+async fn main() {
     //retrieve command line flags and values
     let commandline_arg_matches = clap::clap_app!(test_cli =>
         (about: "Starts an instance of the agent service")
@@ -21,8 +22,12 @@ fn main() {
     .get_matches();
 
     match execute_user_commands(commandline_arg_matches) {
-        Ok(_) => todo!(),
-        Err(_) => todo!(),
+        Ok(fib_result) => {
+            println!("{}", fib_result.to_string())
+        }
+        Err(err) => {
+            println!("{}", err.to_string())
+        }
     }
 }
 
@@ -36,14 +41,14 @@ fn execute_user_commands(arg_matches: clap::ArgMatches) -> Result<FibonacciResul
             let (recursive_seq, recursive_time) =
                 calculate::calculate_fib_seq_recursively(n, max_recursion_calls)?;
 
-            let recursive_result = ImplementationResult::new(recursive_seq, recursive_time);
+            let recursive_result = ImplementationResult::new(recursive_seq, n, recursive_time);
 
             FibonacciResult::new(Some(recursive_result), None)
         }
         UserCommand::DYNAMIC(n) => {
             let (dynamic_seq, dynamic_time) = calculate::calculate_fib_seq_dynamically(n);
 
-            let dynamic_result = ImplementationResult::new(dynamic_seq, dynamic_time);
+            let dynamic_result = ImplementationResult::new(dynamic_seq, n, dynamic_time);
 
             FibonacciResult::new(None, Some(dynamic_result))
         }
@@ -52,8 +57,9 @@ fn execute_user_commands(arg_matches: clap::ArgMatches) -> Result<FibonacciResul
                 calculate::calculate_fib_seq_recursively(recursive_n, max_recursion_calls)?;
             let (dynamic_seq, dynamic_time) = calculate::calculate_fib_seq_dynamically(dynamic_n);
 
-            let recursive_result = ImplementationResult::new(recursive_seq, recursive_time);
-            let dynamic_result = ImplementationResult::new(dynamic_seq, dynamic_time);
+            let recursive_result =
+                ImplementationResult::new(recursive_seq, recursive_n, recursive_time);
+            let dynamic_result = ImplementationResult::new(dynamic_seq, dynamic_n, dynamic_time);
 
             FibonacciResult::new(Some(recursive_result), Some(dynamic_result))
         }

@@ -2,9 +2,38 @@ use crate::utils::FibonacciError;
 
 pub fn calculate_fib_seq_recursively(
     n: u64,
-    max_recursion_limit: u64,
-) -> Result<(Vec<u64>, u64), FibonacciError> {
-    //setup a way to keep track of recursive_calls
+    max_recursion_calls: u64,
+) -> Result<(u64, u64), FibonacciError> {
+    let start_time = chrono::Utc::now().timestamp_millis();
 
-    return Err(FibonacciError::RecursionLimitReached);
+    let (nth_term, _) = calculate_fib_seq(n, 0, max_recursion_calls)?;
+
+    return Ok((
+        nth_term,
+        (start_time - chrono::Utc::now().timestamp_millis())
+            .try_into()
+            .unwrap(),
+    ));
+}
+
+fn calculate_fib_seq(
+    n: u64,
+    curr_num_recursion_calls: u64,
+    max_recursion_calls: u64,
+) -> Result<(u64, u64), FibonacciError> {
+    if curr_num_recursion_calls >= max_recursion_calls {
+        return Err(FibonacciError::RecursionLimitReached);
+    }
+
+    if n == 0 {
+        return Ok((0, curr_num_recursion_calls + 1));
+    } else if n == 1 {
+        return Ok((1, curr_num_recursion_calls + 1));
+    } else {
+        let (term_1, num_calls) =
+            calculate_fib_seq(n - 1, curr_num_recursion_calls + 1, max_recursion_calls)?;
+        let (term_2, num_calls) = calculate_fib_seq(n - 2, num_calls + 1, max_recursion_calls)?;
+
+        return Ok((term_1 + term_2, num_calls));
+    }
 }
