@@ -26,19 +26,16 @@ pub fn calculate_fib_seq_dynamically(n: u64) -> (num_bigint::BigUint, u64) {
             );
         }
         _ => {
-            //we keep at most 3 terms in memory at a time
-            let mut term_0: num_bigint::BigUint = (0 as u32).to_biguint().unwrap();
-            let mut term_1: num_bigint::BigUint = (1 as u32).to_biguint().unwrap();
-            let mut term_placeholder: num_bigint::BigUint;
+            let mut prev_term = (0 as u32).to_biguint().unwrap();
+            let mut fib = (1 as u32).to_biguint().unwrap();
 
             for _ in 2..(n + 1) {
-                term_placeholder = term_0 + &term_1;
-                term_0 = term_1;
-                term_1 = term_placeholder;
+                prev_term = prev_term + &fib;
+                std::mem::swap(&mut prev_term, &mut fib);
             }
 
             return (
-                term_1,
+                fib,
                 (chrono::Utc::now().timestamp_nanos() - start_time)
                     .try_into()
                     .unwrap(),
