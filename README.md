@@ -15,7 +15,7 @@ This tool provides access to a dynamic programming implementation as well as rec
 ### Options
 
 ```
-A tool to calculate the nth term of the fibonacci sequence. 
+A tool to calculate the nth term of the fibonacci sequence.. 
 It can calculate terms that are well above 128 bits and will keep track of how long the calculation cost. 
 This tool provides access to a dynamic programming implementation as well as recursive implementation.
 
