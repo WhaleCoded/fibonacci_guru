@@ -6,7 +6,7 @@ This tool provides access to a dynamic programming implementation as well as rec
 ## Installation 
 * Use Cargo
 
-`cargo install fibonacci-guru`
+    `cargo install fibonacci-guru`
 
 * Manually downloading a release package from Github Releases [page](https://github.com/WhaleCoded/fibonacci_guru/releases)
 
@@ -33,7 +33,8 @@ OPTIONS:
     -l, --limit <LIMIT>            Overrides the max recursion call limit by taking a number greater than 0. The default
                                    the limit is 1073741824 which is enough to calculate n=30 of the Fibonacci sequence.
     -r, --recursive <RECURSIVE>    Uses the recursive implementation. Takes the desired term number, n value, of the
-                                   Fibonacci sequence.```
+                                   Fibonacci sequence.
+```
 
 ### Examples
 
