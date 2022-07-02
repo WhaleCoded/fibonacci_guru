@@ -1,6 +1,6 @@
 [package]
 name = "fibonacci_guru"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 authors = ["Dallin Hutchison"]
 license = "MIT OR Apache-2.0"
