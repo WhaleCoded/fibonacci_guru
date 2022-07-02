@@ -5,7 +5,7 @@ pub enum FibonacciError {
     #[error(
         "While calculating the fibonnaci sequence we reached the max recursion call limit. 
     If you would like to increase the limit, please include the -l flag followed by a larger number.
-    By default, the limit is 1024 recursive calls."
+    By default, the limit is 1048576 recursive calls."
     )]
     RecursionLimitReached,
     #[error(

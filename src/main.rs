@@ -5,11 +5,10 @@ mod utils;
 
 use utils::{FibonacciError, FibonacciResult, ImplementationResult, UserCommand};
 
-//this limit allows them to calculate up to n = 10
-const DEFAULT_RECURSION_LIMIT: u64 = 1024;
+//this limit allows them to calculate up to n = 30
+const DEFAULT_RECURSION_LIMIT: u64 = 1073741824;
 
-#[tokio::main]
-async fn main() {
+fn main() {
     //retrieve command line flags and values
     let commandline_arg_matches = clap::clap_app!(test_cli =>
         (about: "Starts an instance of the agent service")

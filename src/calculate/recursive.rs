@@ -3,14 +3,14 @@ use crate::utils::FibonacciError;
 pub fn calculate_fib_seq_recursively(
     n: u64,
     max_recursion_calls: u64,
-) -> Result<(u64, u64), FibonacciError> {
+) -> Result<(u128, u64), FibonacciError> {
     let start_time = chrono::Utc::now().timestamp_millis();
 
     let (nth_term, _) = calculate_fib_seq(n, 0, max_recursion_calls)?;
 
     return Ok((
         nth_term,
-        (start_time - chrono::Utc::now().timestamp_millis())
+        (chrono::Utc::now().timestamp_millis() - start_time)
             .try_into()
             .unwrap(),
     ));
@@ -20,7 +20,7 @@ fn calculate_fib_seq(
     n: u64,
     curr_num_recursion_calls: u64,
     max_recursion_calls: u64,
-) -> Result<(u64, u64), FibonacciError> {
+) -> Result<(u128, u64), FibonacciError> {
     if curr_num_recursion_calls >= max_recursion_calls {
         return Err(FibonacciError::RecursionLimitReached);
     }
