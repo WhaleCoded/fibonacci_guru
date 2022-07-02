@@ -38,7 +38,8 @@ OPTIONS:
 
 ### Examples
 
-```$ fibonacci_guru -d 100
+```
+$ fibonacci_guru -d 100
 
 Dynamic:
 The 100th term of the Fibonacci sequence is 354224848179261915075.
