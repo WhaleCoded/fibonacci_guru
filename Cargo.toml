@@ -1,12 +1,17 @@
 [package]
 name = "fibonacci_guru"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+authors = ["Dallin Hutchison"]
+license = "MIT OR Apache-2.0"
+description = "A tool to calculate the nth term of the fibonacci sequence. It can calculate terms that are well above 128 bits and will keep track of how long the calculation cost. This tool provides access to a dynamic programming implementation as well as recursive implementation."
+readme = "README.md"
+homepage = "https://github.com/WhaleCoded/fibonacci_guru"
+repository = "https://github.com/WhaleCoded/fibonacci_guru"
+keywords = ["cli", "fibonacci"]
+categories = ["command-line-utilities"]
 
 [dependencies]
-tokio = { version = "1.17.0", features = ["full"] }
 clap = "2.34.0"
 thiserror = "1.0"
 chrono = "0.4.19"

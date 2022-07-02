@@ -10,13 +10,15 @@ const DEFAULT_RECURSION_LIMIT: u64 = 1073741824;
 
 fn main() {
     //retrieve command line flags and values
-    let commandline_arg_matches = clap::clap_app!(test_cli =>
-        (about: "Starts an instance of the agent service")
+    let commandline_arg_matches = clap::clap_app!(fibonacci_guru =>
+        (about: "A tool to calculate the nth term of the fibonacci sequence. 
+It can calculate terms that are well above 128 bits and will keep track of how long the calculation cost. 
+This tool provides access to a dynamic programming implementation as well as recursive implementation.")
         (version: "1.0")
-        (@arg DYNAMIC: -d --dynamic + takes_value "Uses the dynamic programming implementation")
-        (@arg RECURSIVE: -r --recursive + takes_value "Uses the recursive implementation")
-        (@arg BOTH: -b --both + takes_value "Uses both the dynamic programming and the recursive implementation.")
-        (@arg LIMIT: -l --limit + takes_value "Changes to the recursive implementation")
+        (@arg DYNAMIC: -d --dynamic + takes_value "Uses the dynamic programming implementation. Takes the desired term number, n value, of the Fibonacci sequence.")
+        (@arg RECURSIVE: -r --recursive + takes_value "Uses the recursive implementation. Takes the desired term number, n value, of the Fibonacci sequence.")
+        (@arg BOTH: -b --both + takes_value "Uses both the dynamic programming and the recursive implementation. Takes the desired term number, n value, of the Fibonacci sequence.")
+        (@arg LIMIT: -l --limit + takes_value "Overrides the max recursion call limit by taking a number greater than 0. The default the limit is 1073741824 which is enough to calculate n=30 of the Fibonacci sequence.")
     )
     .get_matches();
 
