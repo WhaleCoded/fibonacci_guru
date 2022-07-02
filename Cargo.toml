@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 tokio = { version = "1.17.0", features = ["full"] }
 clap = "2.34.0"
+thiserror = "1.0"
