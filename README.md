@@ -6,7 +6,7 @@ This tool provides access to a dynamic programming implementation as well as rec
 ## Installation 
 * Use Cargo
 
-    `cargo install fibonacci-guru`
+    `cargo install fibonacci_guru`
 
 * Manually downloading a release package from Github Releases [page](https://github.com/WhaleCoded/fibonacci_guru/releases)
 
